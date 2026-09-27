@@ -19,6 +19,9 @@ spruce/
               HBLUP via AI-REML)
   data/       Not tracked in git -- see Data below
   output/     Script outputs (CSV/JLD2), not tracked in git
+qtlmas/
+  scripts/    QTL-MAS 2010 sex-constrained OCS benchmark (RSVD-OCS only, no
+              robust extension)
 legacy/       Superseded pipeline versions, kept for provenance (see below)
 tools/        General-purpose solver not specific to the spruce case study
 manuscript/   LaTeX/figures for the paper (not yet populated in this repo)
@@ -86,6 +89,39 @@ All five legacy scripts use hardcoded local Windows paths
 portable -- edit the `BASE_DIR`/`OUT_DIR`/`OMEGA_FACTOR_FILE` constants at the
 top of each file before running.
 
+## QTL-MAS 2010 benchmark (qtlmas/scripts)
+
+Sex-constrained RSVD-OCS on the QTL-MAS 2010 dataset (n=3,226; VanRaden 2008
+GRM from ~10,000 SNPs; GBLUP/AI-REML GEBVs). Contribution vectors are split
+into separate male/female quotas (`sum(x_male) == N/2`, `sum(x_female) ==
+N/2`) rather than the single-population budget constraint used for spruce.
+The robust OCS extension is deliberately not applied to this dataset.
+
+Run in this order:
+
+1. **qtlmas_ocs_sexconstrained.jl** -- builds the GRM, runs a singular-value
+   spectral diagnostic (effective rank, variance-explained thresholds), then
+   compares Full Dense / PCA Standard / PCA Randomized OCS across a rank
+   sweep at a fixed gamma. Saves the rank-comparison CSV, both methods'
+   contribution CSVs, and a timestamped JLD2 bundle
+   (`ocs_qtlmas_<timestamp>.jld2`).
+2. **qtlmas_gamma_rank_sweep.jl** -- independent full-dense-vs-RSVD sweep
+   across a gamma x rank grid (own data loading; does not depend on step 1),
+   with an elbow table recommending a rank per gamma.
+3. **qtlmas_gamma_rank_figure.jl** -- three-panel CairoMakie figure (accuracy
+   vs. rank, speedup vs. rank, speedup vs. solution sparsity) from step 2's
+   summary/elbow CSVs.
+4. **qtlmas_compare_solutions_rank30.jl** -- loads step 1's JLD2 bundle and
+   produces contribution-concordance and ranking-shift figures at the
+   recommended rank (30), coloured by sex. **Update the hardcoded
+   `jld_file` filename** at the top to match the actual timestamped file step
+   1 produced.
+
+Like `legacy/`, these scripts use hardcoded local Windows paths (`BASE_DIR`,
+`OUT_DIR`, `tbv_file`, `gebv_file`, `geno_file`) -- edit them at the top of
+each file before running. Figures here use CairoMakie, unlike the spruce
+pipeline's matplotlib-based `make_spruce_figures.py`.
+
 ## Tools (tools/)
 
 - `GBLUPAIREML.jl` -- a general-purpose AI-REML GBLUP solver supporting
@@ -93,19 +129,9 @@ top of each file before running.
   regression model (with LRT/AIC model comparison). Not specific to the
   spruce case study; included as a reusable building block.
 
-## QTL-MAS 2010 benchmark (not yet in this repo)
-
-The manuscript also benchmarks sex-constrained OCS on the QTL-MAS 2010
-dataset (n=3,226; RSVD-OCS with separate male/female contribution
-constraints, no robust extension). Those scripts
-(`qtlmas_ocs_sexconstrained.jl`, `qtlmas_gamma_rank_sweep.jl`,
-`qtlmas_gamma_rank_figure.jl`, `qtlmas_compare_solutions_rank30.jl`) did not
-transfer in this upload and are not yet in this repository -- add them
-whenever convenient.
-
 ## Tooling
 
 - Julia: JuMP + OSQP for the OCS QP, JLD2/CSV/DataFrames for I/O,
-  LinearAlgebra, StatsBase (Kendall's tau)
-- Python: pandas, matplotlib (figure generation only)
+  LinearAlgebra, StatsBase (Kendall's tau), CairoMakie (QTL-MAS figures)
+- Python: pandas, matplotlib (spruce figure generation only)
 - JWAS (legacy pipeline only) for MCMC-based EBV estimation
