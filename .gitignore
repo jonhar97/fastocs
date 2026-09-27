@@ -1,0 +1,35 @@
+# Research data -- not tracked (see README > Data)
+spruce/data/*
+!spruce/data/.gitkeep
+spruce/output/*
+!spruce/output/.gitkeep
+
+# Common data/result file types, wherever they land
+*.jld2
+*.csv
+*.txt
+!README*.txt
+
+# Manuscript build artifacts (keep sources, drop generated output)
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.synctex.gz
+
+# Julia
+Manifest.toml
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
