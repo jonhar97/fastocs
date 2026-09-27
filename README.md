@@ -16,7 +16,7 @@ study) with minimal loss in genetic gain or solution quality.
 ```
 spruce/
   scripts/    Current Norway spruce pipeline (single-trait Hjd17, single-step
-              HBLUP via AI-REML)
+              HBLUP via AI-REML) plus an optional ID-anonymization utility
   data/       Not tracked in git -- see Data below
   output/     Script outputs (CSV/JLD2), not tracked in git
 qtlmas/
@@ -66,6 +66,33 @@ Skogforsk research data and are **not included** in this repository. Populate
 
 `AIREML_spruce.jl` writes its outputs (EBVs, PEV, variance components) to
 `spruce/output/`, which the later scripts then read via `load_spruce_hblup.jl`.
+
+### Anonymizing IDs (spruce/scripts/anonymize_spruce_ids.jl)
+
+Optional pre-processing step: replaces real tree IDs -- and the `Dad_id`/
+`Mum_id` pedigree links to other trees -- with dummy IDs across both raw
+input files (`Hmat_5525_spruce_tau_1_omega_1_PDF.txt` and
+`phenotypes_5525_spruce_Horder_v3.txt`), writing `*_anon` copies alongside
+the originals. The same real-to-dummy mapping is used for both files and
+for both parent columns, so pedigree structure is fully preserved -- only
+the labels change. The H-matrix's row/column order and relationship values,
+and every phenotype column besides the three ID columns, are left
+untouched. Dummy IDs are assigned in randomly shuffled order, so they carry
+no information about a tree's position in the file or anything encoded in
+the real ID.
+
+Because the rest of the pipeline only ever reads the ID column out of these
+two files, pointing `AIREML_spruce.jl` at the `*_anon` files instead of the
+originals is enough to make every downstream output (EBVs, PEV, figures)
+carry dummy IDs too, with no other changes needed.
+
+The mapping table is written to `spruce/data/id_mapping_DO_NOT_SHARE.csv`
+so the anonymization can be reversed later if needed -- it is as sensitive
+as the real IDs and is excluded from git the same way the rest of
+`spruce/data/` is. Set `write_mapping = false` at the top of the script for
+one-way, irreversible anonymization instead. Check the `missing_parent_codes`
+constant against whatever sentinel your data actually uses for unknown/
+founder parents before running.
 
 ## Legacy (legacy/)
 
