@@ -10,6 +10,11 @@ spruce/output/*
 *.txt
 !README*.txt
 
+# ...except the small, synthetic quickstart example -- it's meant to be
+# committed so the pipeline is runnable straight out of the clone.
+!example/data/*.txt
+!example/data/*.csv
+
 # Manuscript build artifacts (keep sources, drop generated output)
 manuscript/*.aux
 manuscript/*.log
