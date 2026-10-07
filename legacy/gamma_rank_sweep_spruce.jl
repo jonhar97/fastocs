@@ -57,8 +57,8 @@ using Dates
 # 0. CONFIGURATION
 # =============================================================================
 
-BASE_DIR = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/NorwaySpruceData/"
-OUT_DIR  = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/NorwaySpruceData/results_gamma_rank_sweep/"
+BASE_DIR = "EDIT_ME/NorwaySpruceData/"
+OUT_DIR  = "EDIT_ME/NorwaySpruceData/results_gamma_rank_sweep/"
 
 gebv_file_hjd17    = joinpath(BASE_DIR, "Save/MCMC_H55253/EBV_Hjd17.txt")
 gebv_file_htv17    = joinpath(BASE_DIR, "Save/MCMC_H55253/EBV_Htv17.txt")

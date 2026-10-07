@@ -34,7 +34,8 @@ using Printf
 # 0. CONFIGURATION
 # =============================================================================
 
-OUT_DIR  = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/LowRankApproxOCS/results/QTLMAS/"
+BASE_DIR = normpath(joinpath(@__DIR__, "..", "data"))
+OUT_DIR  = normpath(joinpath(@__DIR__, "..", "output"))
 
 # JLD2 file saved by qtlmas_ocs_sexconstrained.jl (gamma=1, includes rank sweep)
 # Update filename to match your actual saved file
@@ -83,7 +84,7 @@ println()
 # Reconstruct sex index vectors from metadata dimensions
 # Assumes tbv.txt order: all_sex column determines male_idx / female_idx
 # We rebuild from scratch to be safe
-tbv_file   = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/QTLMAS/tbv.txt"
+tbv_file   = joinpath(BASE_DIR, "tbv.txt")
 using DelimitedFiles
 tbv_raw    = readdlm(tbv_file, ',', header=false)
 all_ids    = Int.(tbv_raw[:, 1])
@@ -92,7 +93,7 @@ male_idx   = findall(all_sex .== 1)
 female_idx = findall(all_sex .== 0)
 
 # GEBV vector
-gebv_file  = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/QTLMAS/GEBV_output.txt"
+gebv_file  = joinpath(BASE_DIR, "GEBV_output.txt")
 gebv_df    = CSV.read(gebv_file, DataFrame; delim='\t')
 id_to_gebv = Dict(Int(gebv_df.ID[i]) => Float64(gebv_df.GEBV[i]) for i in eachindex(gebv_df.ID))
 g_vec      = [get(id_to_gebv, id, 0.0) for id in all_ids]
@@ -117,7 +118,7 @@ else
 
     # Rebuild G (required for solver)
     using LinearAlgebra
-    geno_file = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/QTLMAS/QTLMAS2010gen/QTLMAS2010gen.txt"
+    geno_file = joinpath(BASE_DIR, "QTLMAS2010gen", "QTLMAS2010gen.txt")
     println("    Building GRM...")
     M      = readdlm(geno_file, ',', header=false)
     N_mat  = M .- 1

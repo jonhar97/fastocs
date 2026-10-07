@@ -28,7 +28,7 @@ using Printf
 # 0. PATHS
 # =============================================================================
 
-OUT_DIR     = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/LowRankApproxOCS/results/QTLMAS/"
+OUT_DIR     = normpath(joinpath(@__DIR__, "..", "output"))
 summary_csv = joinpath(OUT_DIR, "gamma_rank_sweep_summary.csv")
 elbow_csv   = joinpath(OUT_DIR, "gamma_rank_sweep_elbow.csv")
 fig_out     = joinpath(OUT_DIR, "gamma_rank_sweep_figure.pdf")

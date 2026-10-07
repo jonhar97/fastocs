@@ -3,6 +3,10 @@ spruce/data/*
 !spruce/data/.gitkeep
 spruce/output/*
 !spruce/output/.gitkeep
+qtlmas/data/*
+qtlmas/output/*
+!qtlmas/data/.gitkeep
+!qtlmas/output/.gitkeep
 
 # Common data/result file types, wherever they land
 *.jld2

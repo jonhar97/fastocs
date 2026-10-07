@@ -47,7 +47,7 @@ using LinearAlgebra, Random, Statistics, Printf, OSQP, JuMP, JLD2, DataFrames, C
 @isdefined(g_vec)   || error("g_vec is not defined -- run the base script first.")
 @isdefined(all_ids) || error("all_ids is not defined -- run the base script first.")
 
-OMEGA_FACTOR_FILE = raw"C:\Users\JOAH\OneDrive - Skogforsk\Documents\Projekt\Optimum contribution selection\NorwaySpruceData\results_JWAS_5525_H_tau1_omega1\omega_factor.jld2"
+OMEGA_FACTOR_FILE = raw"EDIT_ME\NorwaySpruceData\results_JWAS_5525_H_tau1_omega1\omega_factor.jld2"
 
 RANK_G = 30   # matches the established reference rank for this dataset at gamma=300
 GAMMA  = 300.0
@@ -485,7 +485,7 @@ if !RUN_KAPPA_PILOT
     )
     println(results_df)
 
-    OUT_DIR_ROBUST = raw"C:\Users\JOAH\OneDrive - Skogforsk\Documents\Projekt\Optimum contribution selection\NorwaySpruceData\results_robust_ocs"
+    OUT_DIR_ROBUST = raw"EDIT_ME\NorwaySpruceData\results_robust_ocs"
     mkpath(OUT_DIR_ROBUST)
     out_csv = joinpath(OUT_DIR_ROBUST, "ocs_vs_rocs_gamma$(Int(GAMMA))_kappa$(KAPPA_STAR).csv")
     CSV.write(out_csv, results_df)

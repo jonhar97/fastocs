@@ -27,6 +27,8 @@ spruce/
 qtlmas/
   scripts/    QTL-MAS 2010 sex-constrained OCS benchmark (RSVD-OCS only, no
               robust extension)
+  data/       Not tracked in git -- QTL-MAS 2010 input files go here
+  output/     Script outputs, not tracked in git
 legacy/       Superseded pipeline versions, kept for provenance (see below)
 tools/        General-purpose solver not specific to the spruce case study
 manuscript/   LaTeX/figures for the paper (not yet populated in this repo)
@@ -152,10 +154,10 @@ provenance rather than active use:
   comparison, and robust-OCS scripts built around the 3-trait JWAS index and
   MCMC-based Omega. Superseded by the `_hblup` versions in `spruce/scripts/`.
 
-All five legacy scripts use hardcoded local Windows paths
-(`C:\Users\JOAH\OneDrive - Skogforsk\...`) from before the pipeline was made
-portable -- edit the `BASE_DIR`/`OUT_DIR`/`OMEGA_FACTOR_FILE` constants at the
-top of each file before running.
+All five legacy scripts predate the portable layout and used absolute local
+paths. Those have been replaced with the placeholder `EDIT_ME/` -- set the
+`BASE_DIR`/`OUT_DIR`/`OMEGA_FACTOR_FILE` (and, in `JWASGBLUP_5022_spruce.jl`,
+the file-path strings) to your own locations before running.
 
 ## QTL-MAS 2010 benchmark (qtlmas/scripts)
 
@@ -185,10 +187,11 @@ Run in this order:
    `jld_file` filename** at the top to match the actual timestamped file step
    1 produced.
 
-Like `legacy/`, these scripts use hardcoded local Windows paths (`BASE_DIR`,
-`OUT_DIR`, `tbv_file`, `gebv_file`, `geno_file`) -- edit them at the top of
-each file before running. Figures here use CairoMakie, unlike the spruce
-pipeline's matplotlib-based `make_spruce_figures.py`.
+These scripts read from `qtlmas/data/` and write to `qtlmas/output/` (both
+relative to the script location, neither tracked in git). Put the QTL-MAS 2010
+files there before running: `tbv.txt`, `GEBV_output.txt`, and
+`QTLMAS2010gen/QTLMAS2010gen.txt`. Figures here use CairoMakie, unlike the
+spruce pipeline's matplotlib-based `make_spruce_figures.py`.
 
 ## Tools (tools/)
 

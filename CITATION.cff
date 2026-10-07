@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "fastOCS: randomized-SVD Optimum Contribution Selection with a robust extension"
+abstract: >-
+  Code for RSVD-OCS, a randomized-SVD approach to Optimum Contribution
+  Selection (OCS) for large genomic relationship matrices in tree breeding,
+  plus a robust extension (ROCS) that accounts for breeding-value
+  uncertainty. Includes a Norway spruce case study, a QTL-MAS 2010 benchmark,
+  and a small synthetic quickstart example.
+type: software
+authors:
+  - family-names: Ahlinder
+    given-names: Jon
+    orcid: "https://orcid.org/0000-0002-8254-5842"
+    affiliation: "Department of Tree Breeding, The Forest Research Institute of Sweden (Skogforsk), Sävar, Sweden"
+  - family-names: Waldmann
+    given-names: Patrik
+    orcid: "https://orcid.org/0000-0003-2390-6609"
+    affiliation: "Mathematical Sciences, University of Oulu, Oulu, Finland"
+    email: "patrik.waldmann@oulu.fi"
+repository-code: "https://github.com/jonhar97/fastocs"
+license: MIT
+keywords:
+  - optimum contribution selection
+  - randomized SVD
+  - genomic selection
+  - tree breeding
+  - Norway spruce

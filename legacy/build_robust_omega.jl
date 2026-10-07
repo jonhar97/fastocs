@@ -28,7 +28,7 @@
 
 using CSV, DataFrames, LinearAlgebra, Random, JLD2, Statistics
 
-RESULTS_DIR = raw"C:\Users\JOAH\OneDrive - Skogforsk\Documents\Projekt\Optimum contribution selection\NorwaySpruceData\results_JWAS_5525_H_tau1_omega1"
+RESULTS_DIR = raw"EDIT_ME\NorwaySpruceData\results_JWAS_5525_H_tau1_omega1"
 
 TRAIT_FILES = (
     Hjd17    = "MCMC_samples_EBV_Hjd17.txt",

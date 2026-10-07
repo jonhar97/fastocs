@@ -7,7 +7,7 @@ using LinearAlgebra
 
 ###################### get data
 #### G 1218 pedigree members
-Amat_t = readdlm("C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\Hmat_5525_spruce_tau_1_omega_1.txt",',', Float64,'\n', header=false)
+Amat_t = readdlm("EDIT_ME\\NorwaySpruceData\\Save\\Hmat_5525_spruce_tau_1_omega_1.txt",',', Float64,'\n', header=false)
 IDs = Amat_t[:,1]
 # Remove the first column (IDs) by selecting columns 2 to end
 Hmat = Amat_t[:, 2:end]
@@ -20,14 +20,14 @@ isposdef(Hmat)
 HmatID = hcat(IDs,Gpd)
 df = DataFrame(HmatID, :auto)
 df.x1 = convert(Vector{Int}, df.x1)
-CSV.write("C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\Hmat_5525_spruce_tau_1_omega_1_PDF.txt", df, writeheader=false)
+CSV.write("EDIT_ME\\NorwaySpruceData\\Save\\Hmat_5525_spruce_tau_1_omega_1_PDF.txt", df, writeheader=false)
 
 # Step 2: Read data 
 #phenofile  = dataset("phenotypes.csv")
 #pedfile    = dataset("pedigree.csv")
 #genofile   = dataset("GRM.csv")
-phenofile  = dataset("C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\phenotypes_5525_spruce_Horder_v3.txt") 
-genofile   = dataset("C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\Hmat_5525_spruce_tau_1_omega_1_PDF.txt")
+phenofile  = dataset("EDIT_ME\\NorwaySpruceData\\Save\\phenotypes_5525_spruce_Horder_v3.txt") 
+genofile   = dataset("EDIT_ME\\NorwaySpruceData\\Save\\Hmat_5525_spruce_tau_1_omega_1_PDF.txt")
 
 
 phenotypes = CSV.read(phenofile,DataFrame,delim = ',',header=true,missingstrings=["NA"])
@@ -326,7 +326,7 @@ println("Summary Table:")
 println(final_results)
 
 # Save results
-output_path = "C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\genetic_correlations_results_G_1218.csv"
+output_path = "EDIT_ME\\NorwaySpruceData\\Save\\genetic_correlations_results_G_1218.csv"
 CSV.write(output_path, final_results)
 println("\nResults saved to 'genetic_correlations_results_G_1218.csv'")
 
@@ -533,7 +533,7 @@ println("Summary Table:")
 println(final_results)
 
 # Save results
-output_path = "C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\genetic_correlations_results_H_5525.csv"
+output_path = "EDIT_ME\\NorwaySpruceData\\Save\\genetic_correlations_results_H_5525.csv"
 CSV.write(output_path, final_results)
 println("\nResults saved to 'genetic_correlations_results_H_5525.csv'")
 
@@ -653,7 +653,7 @@ try
     combined_plot = plot(p1, p2, p3, p4, p5, p6, layout=layout, size=(1200, 1200))
     
     # Save individual plots
-    plot_path = "C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Figures\\"
+    plot_path = "EDIT_ME\\NorwaySpruceData\\Figures\\"
     suffix = "H_5525"
     savefig(p1, plot_path * "genetic_correlation_heatmap_" * suffix * ".png")
     savefig(p2, plot_path * "genetic_correlation_barplot_" * suffix * ".png")
@@ -705,6 +705,6 @@ heritability_df = out["heritability"]
 println(heritability_df)
 
 # Save results
-output_path = "C:\\Users\\joah\\OneDrive - Skogforsk\\Documents\\Projekt\\Optimum contribution selection\\NorwaySpruceData\\Save\\heritability_results_H_5525.csv"
+output_path = "EDIT_ME\\NorwaySpruceData\\Save\\heritability_results_H_5525.csv"
 CSV.write(output_path, heritability_df)
 println("\nResults saved to 'heritability_results_H_5525.csv'")

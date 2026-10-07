@@ -35,8 +35,8 @@ using Dates
 # 0. CONFIGURATION
 # =============================================================================
 
-BASE_DIR = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/QTLMAS/"
-OUT_DIR  = "C:/Users/JOAH/OneDrive - Skogforsk/Documents/Projekt/Optimum contribution selection/LowRankApproxOCS/results/QTLMAS/"
+BASE_DIR = normpath(joinpath(@__DIR__, "..", "data"))
+OUT_DIR  = normpath(joinpath(@__DIR__, "..", "output"))
 
 tbv_file  = joinpath(BASE_DIR, "tbv.txt")
 gebv_file = joinpath(BASE_DIR, "GEBV_output.txt")
