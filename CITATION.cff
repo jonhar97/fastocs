@@ -18,6 +18,7 @@ authors:
     orcid: "https://orcid.org/0000-0003-2390-6609"
     affiliation: "Mathematical Sciences, University of Oulu, Oulu, Finland"
     email: "patrik.waldmann@oulu.fi"
+doi: "10.5281/zenodo.23214804"
 repository-code: "https://github.com/jonhar97/fastocs"
 license: MIT
 keywords:
@@ -26,3 +27,15 @@ keywords:
   - genomic selection
   - tree breeding
   - Norway spruce
+references:
+  - type: dataset
+    title: "Anonymized Norway spruce H-matrix and phenotype data for fastOCS"
+    authors:
+      - family-names: Ahlinder
+        given-names: Jon
+      - family-names: Waldmann
+        given-names: Patrik
+    doi: "10.5281/zenodo.23206385"
+    publisher:
+      name: Zenodo
+    year: 2026

@@ -1,5 +1,7 @@
 # fastOCS
 
+[![DOI](https://zenodo.org/badge/1408313124.svg)](https://doi.org/10.5281/zenodo.23214804)
+
 RSVD-OCS: a randomized-SVD approach to Optimum Contribution Selection (OCS) for
 large genomic relationship matrices in tree breeding, plus a robust extension
 (ROCS) that accounts for breeding-value uncertainty. Methods code for a
@@ -93,15 +95,32 @@ All scripts locate their data/output paths relative to `@__DIR__` (Julia) or
 `__file__` (Python), so the layout above works as-is once `spruce/data/`
 contains the required input files.
 
+## How to cite
+
+- **Code:** Ahlinder J, Waldmann P. fastOCS. Zenodo.
+  https://doi.org/10.5281/zenodo.23214804 (this DOI always resolves to the
+  latest release; each release also has its own version DOI on Zenodo).
+- **Data:** the anonymized Norway spruce input data are a separate Zenodo
+  record, https://doi.org/10.5281/zenodo.23206385 (see Data below).
+
+GitHub's "Cite this repository" button uses `CITATION.cff`.
+
 ## Data
 
-Phenotype, pedigree/genomic relationship matrix, and EBV/MCMC files are
-Skogforsk research data and are **not included** in this repository. Populate
-`spruce/data/` locally with (at minimum):
+The anonymized Norway spruce input data (tree and parent IDs replaced with
+random numbers; see `spruce/scripts/anonymize_spruce_ids.jl`) are archived on
+Zenodo: **https://doi.org/10.5281/zenodo.23206385**
+
+Download the two files and save them in `spruce/data/` (not tracked in git),
+under these names -- if the Zenodo files carry an `_anon` suffix, drop it, since
+the scripts look for the names below:
 - `Hmat_5525_spruce_tau_1_omega_1_PDF.txt` -- H-matrix (tau=1, omega=1,
   Legarra et al. 2009 formulation), ID column + n x n matrix
 - `phenotypes_5525_spruce_Horder_v3.txt` -- phenotypes (Hjd17, Trial,
   Trial_Ruta, Trial_Famly, etc.)
+
+The EBVs and PEV used by the later scripts are not distributed; step 1 of the
+pipeline (`AIREML_spruce.jl`) recomputes them from these two files.
 
 `AIREML_spruce.jl` writes its outputs (EBVs, PEV, variance components) to
 `spruce/output/`, which the later scripts then read via `load_spruce_hblup.jl`.
